@@ -3,35 +3,28 @@ name: Build Legic Tag Detect (.fap)
 on:
   push:
     paths:
-      - 'applications-user/legic_tag_detect/**'
+      - 'applications_user/legic_tag_detect/**'
       - '.github/workflows/build_app.yml'
-  workflow_dispatch:          # Start-Button in der Actions-UI
+  workflow_dispatch:
 
 jobs:
   build_app:
     runs-on: ubuntu-latest
     steps:
-      # 1) Repo & Submodule auschecken
       - uses: actions/checkout@v4
         with:
           submodules: recursive
 
-      # 2) Abhängigkeiten + fbt installieren
-      - name: Install toolchain
+      - name: Install toolchain + fbt
         run: |
           sudo apt-get update
           sudo apt-get install -y python3 python3-pip ninja-build cmake gcc-arm-none-eabi
-          pip3 install fbt                       # offizielles Build-Tool :contentReference[oaicite:0]{index=0}
+          pip3 install fbt
 
-      # 3) Nur unsere App kompilieren
-      - name: Build legic_tag_detect (.fap)
-        working-directory: .
-        run: |
-          ./fbt -j$(nproc) \
-                APP_DIR=applications-user/legic_tag_detect \
-                fap                                     # erzeugt .fap im build-Ordner
-      # 4) Artefakt hochladen
-      - name: Upload .fap artifact
+      - name: Build .fap
+        run: ./fbt APP_DIR=applications_user/legic_tag_detect fap
+
+      - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: legic_tag_detect

@@ -11,11 +11,12 @@ from SCons.Builder import Builder
 from SCons.Errors import StopError
 from SCons.Script import GetOption
 from SCons.Warnings import WarningOnByDefault, warn
+from scripts.flipper.app import App
 
 # Adding objects for application management to env
 #  AppManager env["APPMGR"] - loads all manifests; manages list of known apps
 #  AppBuildset env["APPBUILD"] - contains subset of apps, filtered for current config
-
+apps = []
 
 class ApplicationsCGenerator:
     APP_TYPE_MAP = {
@@ -203,6 +204,7 @@ def generate(env):
             ),
         }
     )
+
 
 
 def exists(env):
