@@ -1,6 +1,6 @@
 /*
  * Legic Tag Detector App for Flipper Zero
- *
+ * Test
  * Anleitung:
  * 1. Klone das Flipper Zero Firmware-Repository.
  * 2. Lege im Verzeichnis firmware/applications-user/ folgendes an:
