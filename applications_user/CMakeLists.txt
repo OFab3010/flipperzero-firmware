@@ -1,0 +1,1 @@
+add_application(NAME legic_tag_detect)
