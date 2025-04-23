@@ -1,0 +1,12 @@
+# applications_user/legic_tag_detect/application.fam
+from fbt_manifest import *
+
+App(
+    appid       = "legic_tag_detect",     # exakt Ordnername!
+    name        = "Legic Tag Detect",
+    apptype     = FlipperAppType.PLUGIN,  # bleibt so
+    entry_point = "legic_tag_detect",     # Funktionsname in .c
+    stack_size  = 2 * 1024,               # 2 kB
+    order       = 20,                     # Menü-Sortierung
+    requires    = ["gui", "nfc"],
+)
