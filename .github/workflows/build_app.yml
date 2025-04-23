@@ -24,8 +24,8 @@ jobs:
       - name: Build .fap
         run: ./fbt APP_DIR=applications_user/legic_tag_detect fap
 
-      - name: Upload artifact
+        - name: Upload .fap artifact
         uses: actions/upload-artifact@v3
         with:
-          name: legic_tag_detect
-          path: build/**/*.fap
+          path: build/**/*.fap                  # <-- MUSS vorhanden sein
+
